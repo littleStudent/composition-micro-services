@@ -9,7 +9,8 @@
     "url": "https://github.com/moarwick/elm-webpack-starter"
   },
   "scripts": {
-    "start": "serve ./ -p 8080 --single"
+    "start": "serve ./ -p 8080 --single",
+    "deploy": "elm make main.elm --output=index.html;now"
   },
   "devDependencies": {
   },

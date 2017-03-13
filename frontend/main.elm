@@ -19,13 +19,13 @@ main =
 
 
 type alias Model =
-    { recipes : List String
+    { animals : List String
     }
 
 
 init : ( Model, Cmd Msg )
 init =
-    ( Model [], getRecipes )
+    ( Model [], getAnimals )
 
 
 
@@ -33,16 +33,16 @@ init =
 
 
 type Msg
-    = Recipe_Response (Result Http.Error (List String))
+    = Animal_Response (Result Http.Error (List String))
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Recipe_Response (Ok newRecipes) ->
-            ( { model | recipes = newRecipes }, Cmd.none )
+        Animal_Response (Ok newAnimal) ->
+            ( { model | animals = newAnimal }, Cmd.none )
 
-        Recipe_Response (Err _) ->
+        Animal_Response (Err _) ->
             ( model, Cmd.none )
 
 
@@ -53,8 +53,8 @@ update msg model =
 view : Model -> Html Msg
 view model =
     div []
-        [ h2 [] [ text "test" ]
-        , div [] (List.map (\recipe -> p [] [ text recipe ]) model.recipes)
+        [ h2 [] [ text "animals" ]
+        , div [] (List.map (\animal -> p [] [ text animal ]) model.animals)
         ]
 
 
@@ -71,6 +71,6 @@ subscriptions model =
 -- HTTP
 
 
-getRecipes : Cmd Msg
-getRecipes =
-    Http.send Recipe_Response (Http.get "api/" (Decode.list Decode.string))
+getAnimals : Cmd Msg
+getAnimals =
+    Http.send Animal_Response (Http.get "api/" (Decode.list Decode.string))
