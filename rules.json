@@ -1,0 +1,15 @@
+{
+    "rules": [
+        {
+            "pathname": "/api/*",
+            "dest": "comp-test-api.now.sh"
+        },
+        {
+            "pathname": "/**",
+            "dest": "a"
+        },
+        {
+            "dest": "www.comp-test.now.sh"
+        }
+    ]
+}
